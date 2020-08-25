@@ -37,8 +37,10 @@ const NotebookList: FC = () => {
         </Link>
       </header>
       <ul>
+      <div className="list-group">
         {notes.map((note:any) => (
           <li
+            className="list-group-item off-white"
             key={note.id}
             onClick={() => {
               dispatch(setCurrentlyEditing(note));
@@ -48,6 +50,7 @@ const NotebookList: FC = () => {
             {note.title}
           </li>
         ))}
+      </div>
       </ul>
     </div>
   );
