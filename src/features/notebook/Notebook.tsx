@@ -37,7 +37,7 @@ const NotebookTile: FC<Props> = (props) => {
   };
 
   return (
-    <div className="notebook-tile list-group-item">
+    <div className="notebook-tile list-group-item off-white">
       <h2
         className="title"
         title="Click to edit"
@@ -68,7 +68,7 @@ const NotebookTile: FC<Props> = (props) => {
       <p className="subtitle">{totalEntries ?? '0'} saved entries</p>
       <div style={{ display: 'flex' }}>
         <button
-          className="btn btn-outline-primary mr-2"
+          className="btn btn-secondary off-white"
           onClick={() => {
             dispatch(setCanEdit(true));
             dispatch(setActiveNotebookId(notebook.id as string));
@@ -77,8 +77,8 @@ const NotebookTile: FC<Props> = (props) => {
         >
           Add
         </button>
-        <Link to={`notebook/${notebook.id}`} style={{ width: '100%' }}>
-          <button className="btn btn-outline-primary">
+        <Link to={`notebook/${notebook.id}`} >
+          <button className="btn btn-secondary off-white">
             View all
           </button>
         </Link>
