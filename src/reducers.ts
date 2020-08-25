@@ -7,8 +7,8 @@ import editorReducer from './features/note/editorSlice'
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  diaries: notebooksReducer,
-  entries: notesReducer,
+  notebooks: notebooksReducer,
+  notes: notesReducer,
   user: userReducer,
   editor: editorReducer,
 });
