@@ -65,7 +65,7 @@ export const create = (
     req: Request
   ): { notebook: Notebook; note: Note } | Response => {
     try {
-      const notebook = schema.diaries.find(req.params.id);
+      const notebook = schema.notebooks.find(req.params.id);
       const { title, content } = JSON.parse(req.requestBody) as Partial<Note>;
       const now = dayjs().format();
       const note = notebook.createNote({
@@ -92,7 +92,7 @@ export const create = (
     req: Request
   ): { entries: Note[] } | Response => {
     try {
-      const notebook = schema.diaries.find(req.params.id);
+      const notebook = schema.notebooks.find(req.params.id);
       return notebook.note;
     } catch (error) {
       return handleErrors(error, 'Failed to get Notebook entries.');
