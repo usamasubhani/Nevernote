@@ -1,9 +1,18 @@
 import React, { FC } from "react";
+import Notebooks from '../notebook/Notebooks'
+import Editor from "../note/Editor";
 
 const Home: FC = () => {
   return (
     <div>
-      <p>Welcome user!</p>
+      <div>
+        <div>
+          <Notebooks />
+        </div>
+        <div>
+          <Editor />
+        </div>
+      </div>
     </div>
   );
 };
