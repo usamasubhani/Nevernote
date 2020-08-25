@@ -87,10 +87,12 @@ const Diaries: FC = () => {
           <NotebookNotesList />
         </Route>
         <Route path="/">
-          <button onClick={createNotebook}>Create New</button>
+          <button className="btn btn-primary btn-block" onClick={createNotebook}>Create New Notebook</button>
+          <div className="list-group">
           {notebooks.map((notebook, idx) => (
             <NotebookTile key={idx} notebook={notebook} />
           ))}
+          </div>
         </Route>
       </Switch>
     </div>
