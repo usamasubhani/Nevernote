@@ -7,7 +7,7 @@ import { saveToken, setAuthState } from './authSlice';
 import { setUser } from './userSlice';
 import { AuthResponse } from '../../services/mirage/routes/user';
 import { useAppDispatch } from '../../store';
-
+import './Auth.css'
 const schema = Yup.object().shape({
   username: Yup.string()
     .required('What? No username?')
@@ -47,18 +47,18 @@ const Auth: FC = () => {
   };
 
   return (
-    <div className="auth">
-      <div className="card">
-        <form onSubmit={handleSubmit(submitForm)}>
-          <div className="inputWrapper">
-            <input ref={register} name="username" placeholder="Username" />
+    <div className="auth container">
+      <form onSubmit={handleSubmit(submitForm)}>
+          <div className="inputWrapper pb-3">
+            <input className="form-control" ref={register} name="username" placeholder="Username" />
             {errors && errors.username && (
               <p className="error">{errors.username.message}</p>
             )}
           </div>
 
-          <div className="inputWrapper">
+          <div className="inputWrapper pb-3">
             <input
+              className="form-control"
               ref={register}
               name="password"
               type="password"
@@ -70,11 +70,12 @@ const Auth: FC = () => {
           </div>
 
           {!isLogin && (
-            <div className="inputWrapper">
+            <div className="inputWrapper pb-3">
               <input
+                className="form-control"
                 ref={register}
                 name="email"
-                placeholder="Email (optional)"
+                placeholder="Email"
               />
               {errors && errors.email && (
                 <p className="error">{errors.email.message}</p>
@@ -82,8 +83,8 @@ const Auth: FC = () => {
             </div>
           )}
 
-          <div className="inputWrapper">
-            <button type="submit" disabled={loading}>
+          <div className="inputWrapper pb-3">
+            <button className="btn btn-primary" type="submit" disabled={loading}>
               {isLogin ? 'Login' : 'Create account'}
             </button>
           </div>
@@ -95,7 +96,6 @@ const Auth: FC = () => {
             {isLogin ? 'No account? Create one' : 'Already have an account?'}
           </p>
         </form>
-      </div>
     </div>
   );
 };
