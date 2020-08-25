@@ -37,7 +37,7 @@ const Diaries: FC = () => {
   const createNotebook = async () => {
     const result : any = await Swal.mixin({
       input: 'text',
-      confirmButtonText: 'Next →',
+      confirmButtonText: 'Next',
       showCancelButton: true,
       progressSteps: ['1', '2'],
     }).queue([
@@ -46,7 +46,7 @@ const Diaries: FC = () => {
         input: 'text',
       },
       {
-        titleText: 'Private or public notebook?',
+        titleText: 'Private or public?',
         input: 'radio',
         inputOptions: {
           private: 'Private',
@@ -70,8 +70,9 @@ const Diaries: FC = () => {
         dispatch(addNotebook([notebook] as Notebook[]));
         dispatch(setUser(_user));
         return Swal.fire({
-          titleText: 'All done!',
-          confirmButtonText: 'OK!',
+          titleText: 'Notebook created!',
+          confirmButtonText: 'OK',
+          
         });
       }
     }
@@ -81,13 +82,13 @@ const Diaries: FC = () => {
   };
 
   return (
-    <div style={{ padding: '1em 0.4em' }}>
+    <div className="m-5">
       <Switch>
         <Route path="/notebook/:id">
           <NotebookNotesList />
         </Route>
         <Route path="/">
-          <button className="btn btn-primary btn-block" onClick={createNotebook}>Create New Notebook</button>
+          <button className="btn btn-outline-primary btn-block mb-2" onClick={createNotebook}>Create New Notebook</button>
           <div className="list-group">
           {notebooks.map((notebook, idx) => (
             <NotebookTile key={idx} notebook={notebook} />
