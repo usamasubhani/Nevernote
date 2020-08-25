@@ -11,11 +11,6 @@ interface Props {
   notebook: Notebook;
 }
 
-const buttonStyle: React.CSSProperties = {
-  fontSize: '0.7em',
-  margin: '0 0.5em',
-};
-
 const NotebookTile: FC<Props> = (props) => {
   const [notebook, setNotebook] = useState(props.notebook);
   const [isEditing, setIsEditing] = useState(false);
