@@ -4,13 +4,13 @@ import { Note } from '../../interfaces/note.interface';
 interface EditorState {
   canEdit: boolean;
   currentlyEditing: Note | null;
-  activeDiaryId: string | null;
+  activeNotebookId: string | null;
 }
 
 const initialState: EditorState = {
   canEdit: false,
   currentlyEditing: null,
-  activeDiaryId: null,
+  activeNotebookId: null,
 };
 
 const editor = createSlice({
@@ -23,11 +23,11 @@ const editor = createSlice({
     setCurrentlyEditing(state, { payload }: PayloadAction<Note | null>) {
       state.currentlyEditing = payload;
     },
-    setActiveDiaryId(state, { payload }: PayloadAction<string>) {
-      state.activeDiaryId = payload;
+    setActiveNotebookId(state, { payload }: PayloadAction<string>) {
+      state.activeNotebookId = payload;
     },
   },
 });
 
-export const { setCanEdit, setCurrentlyEditing, setActiveDiaryId } = editor.actions;
+export const { setCanEdit, setCurrentlyEditing, setActiveNotebookId } = editor.actions;
 export default editor.reducer;
