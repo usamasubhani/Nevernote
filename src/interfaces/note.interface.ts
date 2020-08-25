@@ -1,8 +1,8 @@
 export interface Note {
-    id: string;
+    id?: string;
     title: string;
     content: string;
     createdAt?: string;
     updatedAt?: string;
-    notebookId: string;
+    notebookId?: string;
 }
