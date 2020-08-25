@@ -38,7 +38,7 @@ export const create = (
   
   export const updateNotebook = (schema: any, req: Request): Notebook | Response => {
     try {
-      const notebook = schema.diaries.find(req.params.id);
+      const notebook = schema.notebooks.find(req.params.id);
       const data = JSON.parse(req.requestBody) as Partial<Notebook>;
       const now = dayjs().format();
       notebook.update({
@@ -101,7 +101,7 @@ export const create = (
   
   export const updateNote = (schema: any, req: Request): Note | Response => {
     try {
-      const note = schema.entries.find(req.params.id);
+      const note = schema.notes.find(req.params.id);
       const data = JSON.parse(req.requestBody) as Partial<Note>;
       const now = dayjs().format();
       note.update({
