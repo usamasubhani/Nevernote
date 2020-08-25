@@ -55,80 +55,80 @@ const Editor: FC = () => {
   }, [note]);
 
   return (
-    <div className="editor">
-      <header
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          marginBottom: '0.2em',
-          paddingBottom: '0.2em',
-          borderBottom: '1px solid rgba(0,0,0,0.1)',
-        }}
-      >
-        {note && !canEdit ? (
-          <h4>
-            {note.title}
-            <a
-              href="#edit"
-              onClick={(e) => {
-                e.preventDefault();
-                if (note != null) {
-                  dispatch(setCanEdit(true));
+    <div className="editor mt-5">
+      <div className="container">
+        <header>
+          {note && !canEdit ? (
+            <>
+            <h4 className="mb-3">
+              {note.title}
+              <a
+                href="#edit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (note != null) {
+                    dispatch(setCanEdit(true));
+                  }
+                }}
+                style={{ marginLeft: '0.4em' }}
+              >
+                (Edit)
+              </a>
+            </h4>
+            <div className="w-100"><hr/></div>
+            </>
+          ) : (
+            <input
+              value={editedNote?.title ?? ''}
+              disabled={!canEdit}
+              className="form-control mb-3"
+              placeholder="Title"
+              onChange={(e) => {
+                if (editedNote) {
+                  updateEditedNote({
+                    ...editedNote,
+                    title: e.target.value,
+                  });
+                } else {
+                  updateEditedNote({
+                    title: e.target.value,
+                    content: '',
+                  });
                 }
               }}
-              style={{ marginLeft: '0.4em' }}
-            >
-              (Edit)
-            </a>
-          </h4>
+            />
+          )}
+        </header>
+        {note && !canEdit ? (
+          <Markdown>{note.content}</Markdown>
         ) : (
-          <input
-            value={editedNote?.title ?? ''}
-            disabled={!canEdit}
-            onChange={(e) => {
-              if (editedNote) {
-                updateEditedNote({
-                  ...editedNote,
-                  title: e.target.value,
-                });
-              } else {
-                updateEditedNote({
-                  title: e.target.value,
-                  content: '',
-                });
-              }
-            }}
-          />
+          <>
+            <textarea
+              disabled={!canEdit}
+              className="form-control mb-3"
+              rows={20}
+              placeholder="Supports markdown!"
+              value={editedNote?.content ?? ''}
+              onChange={(e) => {
+                if (editedNote) {
+                  updateEditedNote({
+                    ...editedNote,
+                    content: e.target.value,
+                  });
+                } else {
+                  updateEditedNote({
+                    title: '',
+                    content: e.target.value,
+                  });
+                }
+              }}
+            />
+            <button className="btn btn-primary" onClick={saveNote} disabled={!canEdit}>
+              Save
+            </button>
+          </>
         )}
-      </header>
-      {note && !canEdit ? (
-        <Markdown>{note.content}</Markdown>
-      ) : (
-        <>
-          <textarea
-            disabled={!canEdit}
-            placeholder="Supports markdown!"
-            value={editedNote?.content ?? ''}
-            onChange={(e) => {
-              if (editedNote) {
-                updateEditedNote({
-                  ...editedNote,
-                  content: e.target.value,
-                });
-              } else {
-                updateEditedNote({
-                  title: '',
-                  content: e.target.value,
-                });
-              }
-            }}
-          />
-          <button onClick={saveNote} disabled={!canEdit}>
-            Save
-          </button>
-        </>
-      )}
+      </div>
     </div>
   );
 };
